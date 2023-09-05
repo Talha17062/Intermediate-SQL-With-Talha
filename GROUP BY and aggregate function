@@ -1,0 +1,5 @@
+    -- Q8: WHich customer, for how many times, bought the same or distinct Item from the Aslam Mart?
+	
+   SELECT Inventory_Items, Customer_firstname, Customer_lastname, COUNT(*)
+  FROM mix_inventory                                                                
+  GROUP BY Inventory_Items, Customer_firstname, Customer_lastname;
