@@ -1,0 +1,5 @@
+       -- Q1: Show me the Customer name and Customer_ID who bought the items with price lower than $100 from the Aslam mart ?
+	  
+ SELECT Customer_ID, Customer_firstname, Customer_lastname
+ FROM mix_inventory
+ WHERE Item_price < 100;
