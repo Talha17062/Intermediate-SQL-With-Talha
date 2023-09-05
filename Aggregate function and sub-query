@@ -1,0 +1,9 @@
+ -- Q5: Show me the item from Aslam Mart having highest price in the inventory
+    
+
+    SELECT Inventory_Items FROM mix_inventory
+    WHERE Item_price = (
+                              SELECT Max(Item_price)                  -- Use of sub-query. Why we used this query as this aggregate functions cant be used with the same attribute (column) name in the "SELECT" clause.
+                               FROM mix_inventory                     --  This will keep my query more dynamic if any changes occur in the Item price. To avoid the "INSERT", "UPDATE" and "ALTER" anomalies.
+                                 );   
+      
