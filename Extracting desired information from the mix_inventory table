@@ -1,0 +1,4 @@
+      -- Q2: Return me the query with Customer name, Customer_ID and Customer billing address who bought the itmes with price greater than $100.    
+      SELECT Customer_ID, Customer_firstname, Customer_lastname, Billing_address 
+      FROM mix_inventory
+      WHERE Item_price >100;
