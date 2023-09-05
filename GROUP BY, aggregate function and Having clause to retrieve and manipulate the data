@@ -1,0 +1,9 @@
+  -- Q9: Write down the query which illustrates the amount being spent by each customers who visited the Aslam Mart. List down the query having SUM greater than the 400.
+   
+   
+   
+   SELECT Customer_firstname, Customer_lastname, SUM(Item_price) as 'spent_money'
+   FROM mix_inventory
+   GROUP BY Customer_firstname, Customer_lastname                                   -- This has to be made sure that "Having" clause is always used with Aggregate functions and "GROUP BY" clause as it plays the same role like the "WHERE" clause.
+   HAVING spent_money > 400;                                                        -- 	In this query we found the highest paying customers of Aslam Mart using "GROUP BY" clause, "HAVING" clause and the aggregative "COUNT" function 
+   
