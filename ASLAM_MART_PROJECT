@@ -1,0 +1,119 @@
+                                           -- Intermediate SQL --
+  use saad; 
+CREATE TABLE IF NOT EXISTS Mix_inventory
+(
+Inventory_ID int Primary key,
+Inventory_Items varchar(100),
+Customer_ID int,
+Customer_firstname varchar(100),
+Customer_lastname varchar(100),
+Billing_address varchar(100),
+Item_price varchar(50)	
+
+);
+
+
+
+INSERT INTO Mix_inventory
+VALUES("1","haircomb","001","Talha","Talib","Jubilee Town","100"),
+      ("2","toothbrush","002","Salman","Alvi","Lobosillo","25"),
+      ("3","shoepolish","003","Ibrahim","Vohra","Jajja","56"),
+      ("4","toothpaste","004","Mirza","Baig","Model Town","35"),
+      ("5","Jewellery","005","Fatima","Pasha","Johar Town","1200"),
+      ("6","shoepolish","003","Talha","Talib","Jubilee Town","56"),
+      ("7","haircomb","001","Mirza","Baig","Model Town","100"),
+      ("8","toothbrush","002","Fatima","Pasha","Johar Town","25"),
+      ("9","toothpaste","004","Ibrahim","Vohra","Jajja","35"),
+      ("10","Jewellery","005","Bano","Fatima","DHA","1200");
+      
+      
+      SELECT * FROM Mix_inventory;
+      
+       -- Q1: Show me the Customer name and Customer_ID who bought the items with price lower than $100 from the Aslam mart ?
+	  
+ SELECT Customer_ID, Customer_firstname, Customer_lastname
+ FROM mix_inventory
+ WHERE Item_price < 100;
+      
+      -- Q2: Return me the query with Customer name, Customer_ID and Customer billing address who bought the itmes with price greater than $100.    
+      SELECT Customer_ID, Customer_firstname, Customer_lastname, Billing_address 
+      FROM mix_inventory
+      WHERE Item_price >100;
+      
+      -- Q3: List the query showing total revenue of Aslam mart so far?
+      SELECT  SUM(Item_price) as 'total revenue'  FROM mix_inventory   -- use of Alias and aggregative function
+      
+    
+      -- Q4: Write a query which returns the Item_price, Customer_name, Inventory_Item who did the purchasing of less than $50. Moreover, the customer must be from Model Town.
+     
+      SELECT Item_price, Customer_firstname, Customer_lastname, Inventory_Items
+      FROM mix_inventory
+      WHERE Item_price < 50 AND         -- Using Where clause with the AND condition 
+      Billing_Address = "Model Town";
+      
+      -- Q5: Show me the item from Aslam Mart having highest price in the inventory
+    SELECT Inventory_Items FROM mix_inventory
+    WHERE Item_price = (
+                              SELECT Max(Item_price)                  -- Use of inner query. Why we use this query becuase the aggregate functions cant be used with the same attribute (column) name in the "SELECT" clause.
+                               FROM mix_inventory                     --  This will keep my query more dynamic if any changes occur in the Item price.
+                                 );   
+      
+      
+
+      
+      -- Q6: Which customer visited the Aslam mart the most? 
+	
+    SELECT  Customer_firstname, Customer_lastname, COUNT(*) as 'mostly_visited_customer'
+    FROM mix_inventory                                                 -- Count function gives you the total count and this is an aggregate function which must be used with "GROUP BY" clause which automatically groups the attributes.  
+    GROUP BY Customer_firstname, Customer_lastname
+    
+    
+
+    
+    -- Q7: Which customer spent the most in Aslam Mart?
+    
+SELECT Customer_firstname, Customer_lastname, SUM(Item_price) as mostly_spent_money
+FROM mix_inventory
+GROUP BY Customer_firstname, Customer_lastname                                         -- This is to be kept in mind that attributes name in the "GROUP BY" clause have to be same as in "SELECT" clause
+LIMIT 1;                                                                               -- Limit clause allows the users to see the desired rows.
+      
+      
+      
+      -- Q8: WHich customer, for how many times, bought the same or distinct Item from the Aslam Mart?
+	
+  SELECT Inventory_Items, Customer_firstname, Customer_lastname, COUNT(*)
+  FROM mix_inventory                                                                
+  GROUP BY Inventory_Items, Customer_firstname, Customer_lastname;
+      
+      
+
+      
+   -- Q9: Write down the query which illustrates the amount being spent by each customers who visited the Aslam Mart. List down the query having SUM greater than the 400.
+   
+   
+   
+   SELECT Customer_firstname, Customer_lastname, SUM(Item_price) as 'spent_money'
+   FROM mix_inventory
+   GROUP BY Customer_firstname, Customer_lastname                                   -- This has to be made sure that "Having" clause is always used with Aggregate functions and "GROUP BY" clause as it plays the same role like the "WHERE" clause.
+   HAVING spent_money > 400;                                                        -- 	In this query we found the highest paying customers of Aslam Mart using "GROUP BY" clause, "HAVING" clause and the aggregative "COUNT" function 
+   
+   
+   
+   -- Q10: Retrieve the customers name who are based in "Jubilee Town", "Lobosillo","Jajja","Model Town" and "DHA".alter
+   
+   SELECT Customer_firstname, Customer_lastname, Billing_address
+   FROM mix_inventory                                                                           -- "IN" operator comes in handy when you are asked to retrieve the selective information, especially. "IN" operator is always used with "WHERE" clause
+   WHERE Billing_address IN ("Jubilee Town","Lobosillo","Jajja","Model Town","DHA");             -- Another way to make this query more dynamic is to write the sub- query which would do the same task but in efficient and effective way.alter
+   
+  
+    
+   SELECT Customer_firstname, Customer_lastname, Billing_address 
+   FROM mix_inventory
+   WHERE Billing_address IN (    
+   
+                                SELECT Billing_address
+                                  FROM mix_inventory 
+                                  );
+                                  
+                                  
+                      
