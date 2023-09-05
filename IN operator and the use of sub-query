@@ -1,0 +1,16 @@
+  -- Q10: Retrieve the customers name who are based in "Jubilee Town", "Lobosillo","Jajja","Model Town" and "DHA".alter
+   
+   SELECT Customer_firstname, Customer_lastname, Billing_address
+   FROM mix_inventory                                                                           -- "IN" operator comes in handy when you are asked to retrieve the selective information, especially. "IN" operator is always used with "WHERE" clause
+   WHERE Billing_address IN ("Jubilee Town","Lobosillo","Jajja","Model Town","DHA");             -- Another way to make this query more dynamic is to write the sub- query which would do the same task but in efficient and effective way.alter
+   
+  
+    
+   SELECT Customer_firstname, Customer_lastname, Billing_address 
+   FROM mix_inventory
+   WHERE Billing_address IN (    
+   
+                                SELECT Billing_address
+                                  FROM mix_inventory 
+                                  );
+                                  
