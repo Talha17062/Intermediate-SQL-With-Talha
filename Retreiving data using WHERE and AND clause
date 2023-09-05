@@ -1,0 +1,6 @@
+ -- Q4: Write a query which returns the Item_price, Customer_name, Inventory_Item who did the purchasing of less than $50. Moreover, the customer must be from Model Town.
+     
+      SELECT Item_price, Customer_firstname, Customer_lastname, Inventory_Items
+      FROM mix_inventory
+      WHERE Item_price < 50 AND                                                             -- Using Where clause with the AND condition. Likewise, you can aslo use the "OR" condition  
+      Billing_Address = "Model Town";
