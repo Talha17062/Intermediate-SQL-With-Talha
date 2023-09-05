@@ -1,0 +1,4 @@
+ -- Q3: List the query showing total revenue of Aslam mart so far?
+
+
+ SELECT  SUM(Item_price) as 'total revenue'  FROM mix_inventory   -- use of Alias and aggregative function. The alias helps you change the attribute name temporarily 
