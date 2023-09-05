@@ -1,0 +1,7 @@
+    -- Q7: Which customer spent the most in Aslam Mart?
+    
+SELECT Customer_firstname, Customer_lastname, SUM(Item_price) as mostly_spent_money
+FROM mix_inventory
+GROUP BY Customer_firstname, Customer_lastname                                         -- This is to be kept in mind that attributes name in the "GROUP BY" clause have to be same as in "SELECT" clause
+LIMIT 1;                                                                               -- Limit clause allows the users to see the desired rows.
+      
