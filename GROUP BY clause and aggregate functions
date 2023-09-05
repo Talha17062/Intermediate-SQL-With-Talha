@@ -1,0 +1,7 @@
+  -- Q6: Which customer visited the Aslam mart the most? 
+
+
+
+     SELECT  Customer_firstname, Customer_lastname, COUNT(*) as 'mostly_visited_customer'
+    FROM mix_inventory                                                                   -- Count function gives you the total count and this is an aggregate function which must be used with "GROUP BY" clause which automatically groups the attributes.  
+    GROUP BY Customer_firstname, Customer_lastname                                       -- The steric in the COUNT means that all the desired columns or attributes which have been called must be counted along with.
