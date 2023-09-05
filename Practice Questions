@@ -1,0 +1,10 @@
+ -- Q1: Show me the Customer name and Customer_ID who bought the items with price lower than $100 from the Aslam mart ?
+ -- Q2: Return me the query with Customer name, Customer_ID and Customer billing address who bought the itmes with price greater than $100. 
+ -- Q3: List the query showing total revenue of Aslam mart so far?
+ -- Q4: Write a query which returns the Item_price, Customer_name, Inventory_Item who did the purchasing of less than $50. Moreover, the customer must be from Model Town.
+ -- Q5: Show me the item from Aslam Mart having highest price in the inventory
+ -- Q6: Which customer visited the Aslam mart the most? 
+ -- Q7: Which customer spent the most in Aslam Mart?
+ -- Q8: WHich customer, for how many times, bought the same or distinct Item from the Aslam Mart?
+ -- Q9: Write down the query which illustrates the amount being spent by each customers who visited the Aslam Mart. List down the query having SUM greater than the 400.
+ -- Q10: Retrieve the customers name who are based in "Jubilee Town", "Lobosillo","Jajja","Model Town" and "DHA".alter
